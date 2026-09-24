@@ -1,0 +1,1456 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>داش مبین | اخبار Roblox</title>
+
+<style>
+
+*{
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    margin:0;
+    font-family:Arial,Tahoma,sans-serif;
+    background:#07000d;
+    color:white;
+}
+
+/* پس زمینه */
+
+body:before{
+    content:"";
+    position:fixed;
+    width:600px;
+    height:600px;
+    top:-250px;
+    right:-200px;
+    background:#8a00ff;
+    opacity:.15;
+    filter:blur(120px);
+    z-index:-1;
+}
+
+body:after{
+    content:"";
+    position:fixed;
+    width:600px;
+    height:600px;
+    bottom:-300px;
+    left:-200px;
+    background:#d000ff;
+    opacity:.12;
+    filter:blur(120px);
+    z-index:-1;
+}
+
+
+/* هدر */
+
+header{
+    position:sticky;
+    top:0;
+    z-index:100;
+
+    background:rgba(7,0,13,.95);
+
+    border-bottom:1px solid #a000ff;
+
+    box-shadow:0 0 20px #7000ff;
+
+    padding:18px 7%;
+
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.logo{
+    font-size:26px;
+    font-weight:bold;
+
+    color:white;
+
+    text-shadow:
+    0 0 8px #b000ff,
+    0 0 20px #8a00ff;
+}
+
+.logo span{
+    color:#c000ff;
+}
+
+nav a{
+    color:#ddd;
+    text-decoration:none;
+    margin-right:18px;
+}
+
+nav a:hover{
+    color:#d000ff;
+}
+
+
+/* صفحه اصلی */
+
+.hero{
+    text-align:center;
+    padding:100px 20px 70px;
+}
+
+.hero h1{
+    font-size:60px;
+    margin:0;
+
+    text-shadow:
+    0 0 10px #fff,
+    0 0 25px #a000ff,
+    0 0 50px #7b00ff;
+}
+
+.hero h1 span{
+    color:#c000ff;
+}
+
+.hero p{
+    color:#cdbbd8;
+    font-size:18px;
+    line-height:2;
+}
+
+.line{
+    width:250px;
+    height:3px;
+
+    margin:25px auto;
+
+    background:#b000ff;
+
+    box-shadow:
+    0 0 10px #b000ff,
+    0 0 30px #8a00ff;
+}
+
+
+/* جستجو */
+
+.search{
+    max-width:700px;
+    margin:0 auto 40px;
+
+    display:flex;
+    gap:10px;
+
+    padding:0 20px;
+}
+
+.search input{
+    flex:1;
+
+    padding:15px;
+
+    background:#110019;
+
+    color:white;
+
+    border:1px solid #8a00ff;
+    border-radius:12px;
+
+    outline:none;
+
+    font-size:15px;
+}
+
+.search button{
+    padding:0 25px;
+
+    border:0;
+    border-radius:12px;
+
+    background:#8a00ff;
+    color:white;
+
+    font-weight:bold;
+
+    cursor:pointer;
+
+    box-shadow:0 0 15px #8a00ff;
+}
+
+
+/* بخش */
+
+.section{
+    max-width:1200px;
+    margin:auto;
+
+    padding:40px 20px;
+}
+
+.title{
+    text-align:center;
+    margin-bottom:35px;
+}
+
+.title h2{
+    font-size:32px;
+
+    text-shadow:
+    0 0 10px #a000ff,
+    0 0 25px #7000ff;
+}
+
+.title p{
+    color:#a994b2;
+}
+
+
+/* بازی ها */
+
+.games{
+    display:grid;
+
+    grid-template-columns:
+    repeat(3,1fr);
+
+    gap:25px;
+}
+
+
+/* کارت */
+
+.card{
+    background:#0e0018;
+
+    border:1px solid #6900a8;
+
+    border-radius:18px;
+
+    padding:25px;
+
+    text-align:center;
+
+    transition:.3s;
+
+    box-shadow:
+    0 0 10px rgba(130,0,255,.2);
+}
+
+.card:hover{
+    transform:translateY(-8px);
+
+    border-color:#c000ff;
+
+    box-shadow:
+    0 0 15px #9000ff,
+    0 0 35px rgba(150,0,255,.5);
+}
+
+.icon{
+    font-size:55px;
+
+    margin-bottom:15px;
+}
+
+.card h3{
+    font-size:23px;
+}
+
+.card p{
+    color:#bba9c5;
+
+    line-height:1.8;
+}
+
+.news-button{
+    width:100%;
+
+    padding:13px;
+
+    margin-top:15px;
+
+    border:1px solid #a000ff;
+
+    border-radius:10px;
+
+    background:#180021;
+
+    color:white;
+
+    cursor:pointer;
+
+    font-weight:bold;
+
+    font-size:15px;
+}
+
+.news-button:hover{
+    background:#9000ff;
+
+    box-shadow:
+    0 0 10px #9000ff,
+    0 0 25px #9000ff;
+}
+
+
+/* پنجره خبر */
+
+.modal{
+    display:none;
+
+    position:fixed;
+
+    top:0;
+    left:0;
+    right:0;
+    bottom:0;
+
+    background:rgba(0,0,0,.9);
+
+    z-index:1000;
+
+    padding:25px;
+
+    overflow:auto;
+}
+
+.modal.active{
+    display:block;
+}
+
+.news-page{
+    max-width:900px;
+
+    margin:40px auto;
+
+    background:#0d0017;
+
+    border:1px solid #b000ff;
+
+    border-radius:20px;
+
+    padding:35px;
+
+    box-shadow:
+    0 0 20px #8a00ff,
+    0 0 50px rgba(130,0,255,.4);
+}
+
+.close{
+    float:left;
+
+    width:40px;
+    height:40px;
+
+    border:0;
+
+    border-radius:50%;
+
+    background:#8500ff;
+
+    color:white;
+
+    font-size:22px;
+
+    cursor:pointer;
+}
+
+.news-page h2{
+    clear:both;
+
+    padding-top:20px;
+
+    font-size:32px;
+
+    color:#d000ff;
+
+    text-shadow:
+    0 0 10px #a000ff;
+}
+
+.news-text{
+    color:#ddd;
+
+    font-size:17px;
+
+    line-height:2.3;
+
+    margin-top:25px;
+}
+
+.creator{
+    margin-top:40px;
+
+    padding-top:25px;
+
+    border-top:1px solid #4d006e;
+
+    text-align:center;
+
+    color:#d000ff;
+
+    font-size:18px;
+
+    font-weight:bold;
+
+    text-shadow:
+    0 0 10px #a000ff;
+}
+
+
+/* کدها */
+
+.codes{
+    display:grid;
+
+    grid-template-columns:
+    repeat(3,1fr);
+
+    gap:20px;
+}
+
+.code-box{
+    background:#0e0018;
+
+    border:1px solid #6900a8;
+
+    border-radius:15px;
+
+    padding:20px;
+}
+
+.code-box h3{
+    color:#d000ff;
+}
+
+.code{
+    background:#050007;
+
+    border:1px dashed #8a00ff;
+
+    padding:12px;
+
+    margin-top:10px;
+
+    border-radius:8px;
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+}
+
+.code button{
+    background:#8500ff;
+
+    color:white;
+
+    border:0;
+
+    padding:7px 12px;
+
+    border-radius:7px;
+
+    cursor:pointer;
+}
+
+
+/* فوتر */
+
+footer{
+    text-align:center;
+
+    padding:50px 20px;
+
+    margin-top:40px;
+
+    border-top:1px solid #7000b0;
+
+    background:#050008;
+}
+
+footer h2{
+    color:#c000ff;
+
+    text-shadow:
+    0 0 10px #a000ff,
+    0 0 25px #8000ff;
+}
+
+footer p{
+    color:#9f8aa8;
+}
+
+footer strong{
+    color:#d000ff;
+}
+
+
+/* موبایل */
+
+@media(max-width:800px){
+
+    header{
+        flex-direction:column;
+        gap:15px;
+    }
+
+    .hero h1{
+        font-size:40px;
+    }
+
+    .games{
+        grid-template-columns:1fr;
+    }
+
+    .codes{
+        grid-template-columns:1fr;
+    }
+
+    nav a{
+        margin:5px;
+    }
+
+}
+
+</style>
+</head>
+
+
+<body>
+
+
+<!-- هدر -->
+
+<header>
+
+<div class="logo">
+داش <span>مبین</span> | ROBLOX
+</div>
+
+<nav>
+
+<a href="#games">
+بازی‌ها
+</a>
+
+<a href="#codes">
+کدها
+</a>
+
+<a href="#about">
+درباره ما
+</a>
+
+</nav>
+
+</header>
+
+
+<!-- صفحه اصلی -->
+
+<section class="hero">
+
+<h1>
+اخبار <span>ROBLOX</span>
+</h1>
+
+<div class="line"></div>
+
+<p>
+جدیدترین اخبار بازی‌های روبلاکس
+<br>
+آپدیت‌ها، ایونت‌ها و کدهای جدید 🔥
+</p>
+
+</section>
+
+
+<!-- جستجو -->
+
+<div class="search">
+
+<input
+id="search"
+type="text"
+placeholder="🔎 اسم بازی را بنویس..."
+>
+
+<button onclick="searchGame()">
+جستجو
+</button>
+
+</div>
+
+
+<!-- بازی ها -->
+
+<section class="section" id="games">
+
+<div class="title">
+
+<h2>
+🎮 اخبار بازی‌ها
+</h2>
+
+<p>
+روی «مشاهده اخبار» بزن تا خبرهای همان بازی را ببینی
+</p>
+
+</div>
+
+
+<div class="games" id="gameList">
+
+
+<!-- Blox Fruits -->
+
+<div class="card" data-name="blox fruits">
+
+<div class="icon">
+🍎
+</div>
+
+<h3>
+Blox Fruits
+</h3>
+
+<p>
+اخبار و آپدیت‌های جدید Blox Fruits
+</p>
+
+<button
+class="news-button"
+onclick="showNews('blox')"
+>
+مشاهده اخبار ←
+</button>
+
+</div>
+
+
+<!-- Brookhaven -->
+
+<div class="card" data-name="brookhaven">
+
+<div class="icon">
+🏠
+</div>
+
+<h3>
+Brookhaven
+</h3>
+
+<p>
+جدیدترین تغییرات و آپدیت‌های Brookhaven
+</p>
+
+<button
+class="news-button"
+onclick="showNews('brookhaven')"
+>
+مشاهده اخبار ←
+</button>
+
+</div>
+
+
+<!-- Steal Brainrot -->
+
+<div class="card" data-name="steal a brainrot">
+
+<div class="icon">
+💀
+</div>
+
+<h3>
+Steal a Brainrot
+</h3>
+
+<p>
+اخبار و اتفاقات جدید بازی
+</p>
+
+<button
+class="news-button"
+onclick="showNews('brainrot')"
+>
+مشاهده اخبار ←
+</button>
+
+</div>
+
+
+<!-- Grow Garden -->
+
+<div class="card" data-name="grow a garden">
+
+<div class="icon">
+🌱
+</div>
+
+<h3>
+Grow a Garden
+</h3>
+
+<p>
+آپدیت‌ها، ایونت‌ها و گیاه‌های جدید
+</p>
+
+<button
+class="news-button"
+onclick="showNews('garden')"
+>
+مشاهده اخبار ←
+</button>
+
+</div>
+
+
+<!-- Blue Lock -->
+
+<div class="card" data-name="blue lock rivals">
+
+<div class="icon">
+⚽
+</div>
+
+<h3>
+Blue Lock Rivals
+</h3>
+
+<p>
+استایل‌ها، کدها و آپدیت‌های جدید
+</p>
+
+<button
+class="news-button"
+onclick="showNews('bluelock')"
+>
+مشاهده اخبار ←
+</button>
+
+</div>
+
+
+<!-- Adopt Me -->
+
+<div class="card" data-name="adopt me">
+
+<div class="icon">
+🐶
+</div>
+
+<h3>
+Adopt Me
+</h3>
+
+<p>
+پت‌ها و ایونت‌های جدید
+</p>
+
+<button
+class="news-button"
+onclick="showNews('adopt')"
+>
+مشاهده اخبار ←
+</button>
+
+</div>
+
+
+<!-- 99 Nights -->
+
+<div class="card" data-name="99 nights in the forest">
+
+<div class="icon">
+🌲
+</div>
+
+<h3>
+99 Nights in the Forest
+</h3>
+
+<p>
+اخبار و کدهای بازی
+</p>
+
+<button
+class="news-button"
+onclick="showNews('forest')"
+>
+مشاهده اخبار ←
+</button>
+
+</div>
+
+
+<!-- MM2 -->
+
+<div class="card" data-name="murder mystery 2 mm2">
+
+<div class="icon">
+🔪
+</div>
+
+<h3>
+Murder Mystery 2
+</h3>
+
+<p>
+اخبار بازی قدیمی و محبوب MM2
+</p>
+
+<button
+class="news-button"
+onclick="showNews('mm2')"
+>
+مشاهده اخبار ←
+</button>
+
+</div>
+
+
+<!-- RIVALS -->
+
+<div class="card" data-name="rivals">
+
+<div class="icon">
+🔫
+</div>
+
+<h3>
+RIVALS
+</h3>
+
+<p>
+آپدیت‌ها و تغییرات بازی
+</p>
+
+<button
+class="news-button"
+onclick="showNews('rivals')"
+>
+مشاهده اخبار ←
+</button>
+
+</div>
+
+
+<!-- Animal Hospital -->
+
+<div class="card" data-name="animal hospital">
+
+<div class="icon">
+🏥
+</div>
+
+<h3>
+Animal Hospital
+</h3>
+
+<p>
+اخبار و آپدیت‌های بازی
+</p>
+
+<button
+class="news-button"
+onclick="showNews('animal')"
+>
+مشاهده اخبار ←
+</button>
+
+</div>
+
+
+<!-- Roblox -->
+
+<div class="card" data-name="roblox">
+
+<div class="icon">
+🌐
+</div>
+
+<h3>
+Roblox
+</h3>
+
+<p>
+اخبار خود پلتفرم Roblox
+</p>
+
+<button
+class="news-button"
+onclick="showNews('roblox')"
+>
+مشاهده اخبار ←
+</button>
+
+</div>
+
+
+</div>
+
+</section>
+
+
+<!-- کدها -->
+
+<section class="section" id="codes">
+
+<div class="title">
+
+<h2>
+🎁 کدهای بازی‌ها
+</h2>
+
+<p>
+روی کپی بزن
+</p>
+
+</div>
+
+
+<div class="codes">
+
+
+<div class="code-box">
+
+<h3>
+⚽ Blue Lock Rivals
+</h3>
+
+<div class="code">
+
+<span>NELSHIDOU</span>
+
+<button onclick="copyCode('NELSHIDOU')">
+کپی
+</button>
+
+</div>
+
+<div class="code">
+
+<span>DEMON</span>
+
+<button onclick="copyCode('DEMON')">
+کپی
+</button>
+
+</div>
+
+</div>
+
+
+<div class="code-box">
+
+<h3>
+💀 Steal a Brainrot
+</h3>
+
+<div class="code">
+
+<span>BESTBRAINROTEVER</span>
+
+<button onclick="copyCode('BESTBRAINROTEVER')">
+کپی
+</button>
+
+</div>
+
+</div>
+
+
+<div class="code-box">
+
+<h3>
+🌲 99 Nights
+</h3>
+
+<div class="code">
+
+<span>AFK</span>
+
+<button onclick="copyCode('AFK')">
+کپی
+</button>
+
+</div>
+
+</div>
+
+
+</div>
+
+</section>
+
+
+<!-- درباره -->
+
+<footer id="about">
+
+<h2>
+💜 داش مبین | Roblox News
+</h2>
+
+<p>
+اخبار، آپدیت‌ها و کدهای بازی‌های روبلاکس
+</p>
+
+<strong>
+
+</strong>
+
+</footer>
+
+
+<!-- صفحه خبر -->
+
+<div class="modal" id="modal">
+
+<div class="news-page">
+
+<button class="close" onclick="closeNews()">
+×
+</button>
+
+<h2 id="newsTitle">
+</h2>
+
+<div
+class="news-text"
+id="newsText">
+</div>
+
+<div class="creator">
+
+ساخته شده توسط داش مبین
+<br>
+</div>
+
+</div>
+
+</div>
+
+
+<script>
+
+/* اخبار */
+
+const newsData = {
+
+blox: {
+
+title:"🍎 اخبار Blox Fruits",
+
+text:`
+
+<strong>آخرین وضعیت Blox Fruits</strong>
+
+<br><br>
+
+Blox Fruits یکی از محبوب‌ترین بازی‌های Roblox است و همچنان آپدیت‌های بزرگ دریافت می‌کند.
+
+<br><br>
+
+در آپدیت‌های جدید، بخش‌هایی از Sea 1 بازطراحی شده‌اند و تغییرات مختلفی در سیستم بازی ایجاد شده است.
+
+<br><br>
+
+همچنین محتوای جدید و تغییرات مربوط به مبارزه و پیشرفت بازیکنان به بازی اضافه شده است.
+
+<br><br>
+
+🔥 بازیکنان می‌توانند منتظر محتوای جدید بیشتری در آپدیت‌های بعدی باشند.
+
+`
+
+},
+
+
+brookhaven: {
+
+title:"🏠 اخبار Brookhaven",
+
+text:`
+
+<strong>آخرین اخبار Brookhaven</strong>
+
+<br><br>
+
+Brookhaven همچنان یکی از بازی‌های بسیار محبوب Roblox است.
+
+<br><br>
+
+در آپدیت‌های اخیر خودروهای جدید و امکانات تازه‌ای برای بازیکنان اضافه شده است.
+
+<br><br>
+
+همچنین پت‌های جدید و تغییرات مربوط به خانه‌ها و محیط بازی اضافه شده‌اند.
+
+<br><br>
+
+🏠 این بازی همچنان به‌صورت مرتب محتوای جدید دریافت می‌کند.
+
+`
+
+},
+
+
+brainrot: {
+
+title:"💀 اخبار Steal a Brainrot",
+
+text:`
+
+<strong>Steal a Brainrot</strong>
+
+<br><br>
+
+این بازی همچنان یکی از بازی‌های ترند Roblox محسوب می‌شود.
+
+<br><br>
+
+آپدیت‌های جدید شامل محتوای تازه، آیتم‌ها و تغییرات مربوط به سیستم بازی هستند.
+
+<br><br>
+
+🎁 بعضی از کدهای بازی نیز در زمان‌های مختلف فعال می‌شوند.
+
+<br><br>
+
+🔥 برای اطلاع از کدهای جدید، بخش کدهای سایت را بررسی کن.
+
+`
+
+},
+
+
+garden: {
+
+title:"🌱 اخبار Grow a Garden",
+
+text:`
+
+<strong>Grow a Garden</strong>
+
+<br><br>
+
+Grow a Garden یکی از بازی‌های محبوب شبیه‌سازی Roblox است.
+
+<br><br>
+
+آپدیت‌های اخیر روی گیاه‌های جدید، ایونت‌ها، آیتم‌ها و محتوای مخصوص بازیکنان تمرکز داشته‌اند.
+
+<br><br>
+
+🌱 بازی همچنان در حال دریافت محتوای جدید است.
+
+`
+
+},
+
+
+bluelock: {
+
+title:"⚽ اخبار Blue Lock Rivals",
+
+text:`
+
+<strong>Blue Lock Rivals</strong>
+
+<br><br>
+
+Blue Lock Rivals یکی از بازی‌های محبوب فوتبال Roblox است.
+
+<br><br>
+
+آپدیت‌های بازی معمولاً شامل Styleهای جدید، Flowهای جدید، بازیکنان و تغییرات Meta هستند.
+
+<br><br>
+
+⚽ کدهای جدید نیز معمولاً همراه با آپدیت‌ها یا رسیدن بازی به Milestoneهای خاص منتشر می‌شوند.
+
+<br><br>
+
+برای کدها بخش مخصوص کدهای سایت را ببین.
+
+`
+
+},
+
+
+adopt: {
+
+title:"🐶 اخبار Adopt Me",
+
+text:`
+
+<strong>Adopt Me</strong>
+
+<br><br>
+
+Adopt Me یکی از قدیمی‌ترین و محبوب‌ترین بازی‌های Roblox است.
+
+<br><br>
+
+محتوای اصلی آپدیت‌ها معمولاً شامل Petهای جدید، ایونت‌ها، آیتم‌ها و امکانات مربوط به Trading است.
+
+<br><br>
+
+🐶 این بازی همچنان جامعه بسیار بزرگی از بازیکنان دارد.
+
+`
+
+},
+
+
+forest: {
+
+title:"🌲 اخبار 99 Nights in the Forest",
+
+text:`
+
+<strong>99 Nights in the Forest</strong>
+
+<br><br>
+
+یک بازی Survival در Roblox است که بازیکنان باید در یک جنگل خطرناک زنده بمانند.
+
+<br><br>
+
+آپدیت‌های بازی معمولاً شامل کلاس‌ها، آیتم‌ها، دشمن‌ها و امکانات جدید هستند.
+
+<br><br>
+
+🌲 کدهای بازی نیز می‌توانند برای دریافت جوایز استفاده شوند.
+
+`
+
+},
+
+
+mm2: {
+
+title:"🔪 اخبار Murder Mystery 2",
+
+text:`
+
+<strong>Murder Mystery 2</strong>
+
+<br><br>
+
+MM2 یکی از بازی‌های قدیمی و معروف Roblox است.
+
+<br><br>
+
+بازیکنان در نقش Innocent، Sheriff یا Murderer بازی می‌کنند.
+
+<br><br>
+
+🔪 با وجود قدیمی بودن، این بازی همچنان بازیکنان زیادی دارد و یکی از بازی‌های شناخته‌شده Roblox باقی مانده است.
+
+`
+
+},
+
+
+rivals: {
+
+title:"🔫 اخبار RIVALS",
+
+text:`
+
+<strong>RIVALS</strong>
+
+<br><br>
+
+RIVALS یکی از بازی‌های FPS محبوب Roblox است.
+
+<br><br>
+
+آپدیت‌های بازی روی سلاح‌ها، نقشه‌ها، حالت‌های مختلف و سیستم رقابتی تمرکز دارند.
+
+<br><br>
+
+🔫 تغییرات سلاح‌ها می‌تواند Meta بازی را تغییر دهد.
+
+`
+
+},
+
+
+animal: {
+
+title:"🏥 اخبار Animal Hospital",
+
+text:`
+
+<strong>Animal Hospital</strong>
+
+<br><br>
+
+Animal Hospital یک بازی مدیریتی و شبیه‌سازی در Roblox است.
+
+<br><br>
+
+آپدیت‌های اخیر روی سیستم Classها و Quality of Life تمرکز داشته‌اند.
+
+<br><br>
+
+🏥 بازی همچنان در حال توسعه است و محتوای جدید برای آن منتشر می‌شود.
+
+`
+
+},
+
+
+roblox: {
+
+title:"🌐 اخبار Roblox",
+
+text:`
+
+<strong>آخرین اخبار خود Roblox</strong>
+
+<br><br>
+
+Roblox در سال ۲۰۲۶ قابلیت‌ها و ابزارهای جدیدی برای بازیکنان و سازندگان معرفی کرده است.
+
+<br><br>
+
+تمرکز بخشی از تغییرات جدید روی امکانات ساخت بازی، ابزارهای جدید Roblox Studio و قابلیت‌های مربوط به هوش مصنوعی است.
+
+<br><br>
+
+🌐 همچنین Roblox روی تجربه بازی در دستگاه‌ها و محیط‌های مختلف تمرکز بیشتری دارد.
+
+<br><br>
+
+🔥 دنیای Roblox همچنان در حال گسترش است.
+
+`
+
+}
+
+};
+
+
+/* باز کردن خبر */
+
+function showNews(game){
+
+const data = newsData[game];
+
+if(!data){
+
+return;
+
+}
+
+document.getElementById("newsTitle").innerHTML =
+data.title;
+
+document.getElementById("newsText").innerHTML =
+data.text;
+
+document.getElementById("modal").classList.add("active");
+
+document.body.style.overflow="hidden";
+
+}
+
+
+/* بستن خبر */
+
+function closeNews(){
+
+document.getElementById("modal").classList.remove("active");
+
+document.body.style.overflow="auto";
+
+}
+
+
+/* بستن با کلیک بیرون */
+
+document.getElementById("modal").addEventListener("click",function(event){
+
+if(event.target===this){
+
+closeNews();
+
+}
+
+});
+
+
+/* بستن با ESC */
+
+document.addEventListener("keydown",function(event){
+
+if(event.key==="Escape"){
+
+closeNews();
+
+}
+
+});
+
+
+/* کپی کد */
+
+function copyCode(code){
+
+navigator.clipboard.writeText(code);
+
+alert("کد کپی شد: "+code);
+
+}
+
+
+/* جستجو */
+
+function searchGame(){
+
+const value=
+document.getElementById("search")
+.value
+.toLowerCase()
+.trim();
+
+const cards=
+document.querySelectorAll(".card");
+
+cards.forEach(function(card){
+
+const name=
+card.dataset.name.toLowerCase();
+
+if(name.includes(value)){
+
+card.style.display="block";
+
+}else{
+
+card.style.display="none";
+
+}
+
+});
+
+}
+
+</script>
+
+</body>
+</html>
